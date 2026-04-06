@@ -18,7 +18,7 @@ export default function App() {
     e.preventDefault();
     if (!input.trim()) return;
     if (editId) {
-      const result = await axios.put(`http://localhost:8800/app/${editId}`, {
+      const result = await axios.put(`https://todo-backend-15eb.onrender.com/app/${editId}`, {
         title: input,
       });
 
@@ -34,7 +34,7 @@ export default function App() {
       console.log(editedTodo);
       setTodo(editedTodo);
     } else {
-      const result = await axios.post("http://localhost:8800/app/create", {
+      const result = await axios.post("https://todo-backend-15eb.onrender.com/app/create", {
         title: input,
       });
       const newTodo = result.data;
@@ -47,7 +47,7 @@ export default function App() {
 
   //delete todo
   const handleDelete = async (_id) => {
-    await axios.delete(`http://localhost:8800/app/${_id}`);
+    await axios.delete(`https://todo-backend-15eb.onrender.com/app/${_id}`);
 
     const deleted = todo.filter((item) => item._id !== _id);
     setTodo(deleted);
@@ -56,7 +56,7 @@ export default function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get("http://localhost:8800/app/display");
+      const result = await axios.get("https://todo-backend-15eb.onrender.com/app/display");
       setTodo(result.data);
     };
     fetchData();
